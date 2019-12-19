@@ -41,7 +41,7 @@ ext{
     rxJavaVersion = '2.1.14'
     rxKotlinVersion = '2.2.0'
     timberVersion = '4.7.0'
-    daggerVersion = '2.15'
+    daggerVersion = '2.23.2'
     retrofitVersion = '2.6.0'
     okHttpVersion = '3.10.0'
     picassoVersion = '2.71828'
