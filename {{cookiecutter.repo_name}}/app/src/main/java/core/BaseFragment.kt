@@ -7,33 +7,36 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import {{ cookiecutter.package_name }}.BR
 
-abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding>(private val mViewModelClass: Class<VM>) : androidx.fragment.app.Fragment() {
-    lateinit var viewModel: VM
-    open lateinit var mBinding: DB
-    fun init(inflater: LayoutInflater, container: ViewGroup) {
-        mBinding = DataBindingUtil.inflate(inflater, getLayoutRes(), container, false)
+abstract class BaseFragment<B : ViewDataBinding, V : BaseViewModel>(
+    @LayoutRes val layout: Int, viewModelClass: Class<V>
+) : Fragment() {
+
+    lateinit var binding: B
+
+    private val viewModel by lazy {
+        ViewModelProviders.of(this, (activity as? BaseActivity<*, *>)?.viewModelProviderFactory)
+            .get(viewModelClass)
     }
 
-    open fun init() {}
-    @LayoutRes
-    abstract fun getLayoutRes(): Int
-
-    private fun getViewM(): VM = ViewModelProviders.of(this).get(mViewModelClass)
-    open fun onInject() {}
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = getViewM()
+    private fun init(inflater: LayoutInflater, container: ViewGroup?) {
+        binding = DataBindingUtil.inflate(inflater, layout, container, false)
+        binding.setVariable(BR.viewModel, viewModel)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        init(inflater, container!!)
-        init()
+    abstract fun init()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        init(inflater, container)
         super.onCreateView(inflater, container, savedInstanceState)
-        return mBinding.root
+        init()
+        return binding.root
     }
-
-    open fun refresh() {}
 }
