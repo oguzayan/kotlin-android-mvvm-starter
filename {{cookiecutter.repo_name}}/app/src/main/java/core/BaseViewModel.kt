@@ -1,6 +1,5 @@
 package {{ cookiecutter.package_name }}.core
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 
-open class BaseViewModel(app: Application) : AndroidViewModel(app)
+open class BaseViewModel : ViewModel()
