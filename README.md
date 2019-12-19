@@ -15,7 +15,6 @@ It includes libraries
 - [Timber](https://github.com/JakeWharton/timber)
 - [Crashlytics](https://try.crashlytics.com/)
 - [Picasso](http://square.github.io/picasso/)
-- [Anko](https://github.com/Kotlin/anko)
 - [Coroutines](https://github.com/Kotlin/kotlinx.coroutines)
 - [Android Jetpack Architecture Components](https://developer.android.com/jetpack/arch/)
 - [Espresso](https://google.github.io/android-testing-support-library/) for UI tests
