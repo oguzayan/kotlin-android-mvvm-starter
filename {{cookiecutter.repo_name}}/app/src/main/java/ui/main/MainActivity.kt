@@ -4,7 +4,7 @@ import {{ cookiecutter.package_name }}.R
 import {{ cookiecutter.package_name }}.core.BaseActivity
 import {{ cookiecutter.package_name }}.databinding.ActivityMainBinding
 
-class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
+class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>(
     R.layout.activity_main,
-    MainViewModel::class.java
+    MainActivityViewModel::class.java
 )
