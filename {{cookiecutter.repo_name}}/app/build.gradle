@@ -4,13 +4,14 @@ buildscript {
     }
 
     dependencies {
-        classpath 'io.fabric.tools:gradle:1.25.4'
+        classpath 'io.fabric.tools:gradle:1.31.1'
     }
 }
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 def STRING = 'String'
 def BUILD_TIME = 'BUILD_TIME'
@@ -23,7 +24,7 @@ repositories {
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion "28.0.2"
+    buildToolsVersion "29.0.2"
 
     defaultConfig {
         applicationId "{{ cookiecutter.package_name }}"
@@ -43,6 +44,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
+	    debuggable true
             ext.enableCrashlytics = false
         }
     }
@@ -58,6 +60,9 @@ android {
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 }
 
@@ -109,20 +114,17 @@ dependencies {
     //coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
             {% endif %}
-
-            {% if cookiecutter.anko == "y" %}
-    // anko
-    implementation "org.jetbrains.anko:anko:$anko_version"
-    implementation "org.jetbrains.anko:anko-coroutines:$anko_version"
-            {% endif %}
+	    
 
 
     //arch-comp Lifecycles, LiveData, and ViewModel
-    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
-    implementation "android.arch.lifecycle:common-java8:$lifecycle_version"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc03"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-rc03"
     //arch-comp Room
-    implementation "android.arch.persistence.room:runtime:$room_version"
-    kapt "android.arch.persistence.room:compiler:$room_version"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
     //Paging
     implementation "android.arch.paging:runtime:$paging_version"
 
