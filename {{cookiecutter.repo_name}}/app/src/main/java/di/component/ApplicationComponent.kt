@@ -1,5 +1,6 @@
 package {{ cookiecutter.package_name }}.di.component
 
+import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
