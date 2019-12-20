@@ -6,7 +6,6 @@ import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import {{ cookiecutter.package_name }}.App
 import {{ cookiecutter.package_name }}.di.module.*
-{% endif %}
 import javax.inject.Singleton
 
 
