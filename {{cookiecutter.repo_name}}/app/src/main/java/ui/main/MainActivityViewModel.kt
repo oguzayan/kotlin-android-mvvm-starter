@@ -1,6 +1,6 @@
 package {{ cookiecutter.package_name }}.ui.main
 
-import android.app.Application
+import android.content.Context
 import {{ cookiecutter.package_name }}.core.BaseViewModel
 import javax.inject.Inject
 
