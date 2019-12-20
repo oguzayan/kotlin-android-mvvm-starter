@@ -38,7 +38,7 @@ It includes libraries
 
 Scaffold your project:
 ```
-cookiecutter https://github.com/general-mobile/kotlin-android-mvvm-starter.git
+cookiecutter https://github.com/oguzayan/kotlin-android-mvvm-starter.git
 ```
 
 
