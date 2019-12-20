@@ -113,6 +113,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
             {% endif %}
 	    
+    implementation 'androidx.preference:preference:1.1.0'
+	    
 
 
     //arch-comp Lifecycles, LiveData, and ViewModel
