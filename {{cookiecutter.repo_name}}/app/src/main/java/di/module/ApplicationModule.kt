@@ -1,26 +1,21 @@
 package {{ cookiecutter.package_name }}.di.module
 
+import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
-import {{ cookiecutter.package_name }}.App
+import androidx.preference.PreferenceManager
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class ApplicationModule(var app: App) {
-
-
-    @Provides
-    @Singleton
-    fun provideApp(): App = app
+class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideContext(): Context = app.applicationContext
+    fun provideContext(application: Application): Context = application.applicationContext
 
     @Provides
     @Singleton
-    fun provideSharedPreferences(): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(app)
+    fun provideSharedPreferences(application: Application): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(application)
 }
