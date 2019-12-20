@@ -11,7 +11,7 @@ import timber.log.Timber.DebugTree
 import javax.inject.Inject
 
 
-class BatteryApplication : Application(), HasActivityInjector {
+class App : Application(), HasActivityInjector {
 
     @Inject
     lateinit var activityInjector: DispatchingAndroidInjector<Activity>
