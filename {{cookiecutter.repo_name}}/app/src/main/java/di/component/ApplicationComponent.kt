@@ -1,32 +1,39 @@
 package {{ cookiecutter.package_name }}.di.component
 
-import android.content.Context
-import android.content.SharedPreferences
-import {{ cookiecutter.package_name }}.App
-import {{ cookiecutter.package_name }}.di.module.ApplicationModule
-import {{ cookiecutter.package_name }}.di.module.DatabaseModule
-import {{ cookiecutter.package_name }}.ui.main.MainActivityViewModel
-{% if cookiecutter.retrofit == "y" %}
-import {{ cookiecutter.package_name }}.di.module.NetModule
-{% endif %}
+import dagger.BindsInstance
 import dagger.Component
+import dagger.android.AndroidInjectionModule
+import dagger.android.AndroidInjector
+import {{ cookiecutter.package_name }}.App
+import {{ cookiecutter.package_name }}.di.module.*
+{% endif %}
 import javax.inject.Singleton
 
 
 @Singleton
 {% if cookiecutter.retrofit == "y" %}
-@Component(modules = arrayOf(ApplicationModule::class,NetModule::class,DatabaseModule::class))
+@Component(modules = [ApplicationModule::class,
+                      AndroidInjectionModule::class,
+                      NetModule::class,
+                      DatabaseModule::class,
+                      ActivityModule::class,
+                      ViewModelModule::class]
 {% endif %}
 {% if cookiecutter.retrofit == "n" %}
-@Component(modules = arrayOf(ApplicationModule::class,DatabaseModule::class))
+@Component(modules = [ApplicationModule::class,
+                      AndroidInjectionModule::class,
+                      DatabaseModule::class,
+                      ActivityModule::class,
+                      ViewModelModule::class]
 {% endif %}
-interface ApplicationComponent {
-    fun app(): App
+interface ApplicationComponent : AndroidInjector<App> {
 
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        fun applicationBind(application: Application): Builder
 
-    fun context(): Context
+        fun build(): ApplicationComponent
+    }
 
-    fun preferences(): SharedPreferences
-
-    fun inject(mainActivityViewModel: MainActivityViewModel)
 }
