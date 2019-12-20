@@ -38,11 +38,11 @@ It includes libraries
 
 Scaffold your project:
 ```
-cookiecutter https://github.com/general-mobile/kotlin-android-mvvm-starter.git
+cookiecutter https://github.com/oguzayan/kotlin-android-mvvm-starter.git
 ```
 Scaffold your Androidx project:
 ```
-cookiecutter https://github.com/general-mobile/kotlin-android-mvvm-starter.git --checkout androidx
+cookiecutter https://github.com/oguzayan/kotlin-android-mvvm-starter.git --checkout androidx
 ```
 
 ##### Project Tree After Scaffold
