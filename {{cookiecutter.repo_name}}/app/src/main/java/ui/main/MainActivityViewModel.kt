@@ -6,4 +6,8 @@ import javax.inject.Inject
 
 class MainActivityViewModel @Inject constructor(val context: Context) : BaseViewModel() {
     
+    fun appVersion():String?{
+        return BuildConfig.VERSION_NAME
+    }
+    
 }
