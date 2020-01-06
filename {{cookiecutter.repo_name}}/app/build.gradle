@@ -84,9 +84,9 @@ dependencies {
 
     //di
     implementation rootProject.ext.dagger
+    implementation rootProject.ext.daggerSupport
     kapt rootProject.ext.daggerApt
-    //implementation rootProject.ext.daggerSupport
-    //annotationProcessor rootProject.ext.daggerAnnotation
+    kapt rootProject.ext.daggerAnnotation
 
     //rx
     implementation rootProject.ext.rxJava
