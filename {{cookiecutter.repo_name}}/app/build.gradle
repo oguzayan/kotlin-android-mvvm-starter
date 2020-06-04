@@ -70,11 +70,6 @@ dependencies {
     kapt rootProject.ext.daggerApt
     kapt rootProject.ext.daggerAnnotation
 
-    //rx
-    implementation rootProject.ext.rxJava
-    implementation rootProject.ext.rxAndroid
-    implementation rootProject.ext.rxKotlin
-
     {% if cookiecutter.retrofit == "y" %}
     //net
     implementation rootProject.ext.retrofit
