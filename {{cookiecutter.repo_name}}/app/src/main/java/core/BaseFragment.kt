@@ -8,7 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import {{ cookiecutter.package_name }}.BR
 
 abstract class BaseFragment<B : ViewDataBinding, V : BaseViewModel>(
@@ -18,7 +18,7 @@ abstract class BaseFragment<B : ViewDataBinding, V : BaseViewModel>(
     lateinit var binding: B
 
     private val viewModel by lazy {
-        ViewModelProviders.of(this, (activity as? BaseActivity<*, *>)?.viewModelProviderFactory)
+        ViewModelProvider(this, (activity as? BaseActivity<*, *>)?.viewModelProviderFactory as ViewModelProvider.Factory)
             .get(viewModelClass)
     }
 
