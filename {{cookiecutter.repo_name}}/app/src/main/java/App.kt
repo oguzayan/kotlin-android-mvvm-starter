@@ -4,21 +4,20 @@ import android.app.Activity
 import android.app.Application
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
+import dagger.android.HasAndroidInjector
 import {{ cookiecutter.package_name }}.di.component.DaggerApplicationComponent
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 import javax.inject.Inject
 
 
-class App : Application(), HasActivityInjector {
+class App : Application(), HasAndroidInjector {
 
     @Inject
-    lateinit var activityInjector: DispatchingAndroidInjector<Activity>
+    lateinit var activityInjector: DispatchingAndroidInjector<Any>
 
-    override fun activityInjector(): AndroidInjector<Activity> {
-        return activityInjector
-    }
+    override fun androidInjector(): AndroidInjector<Any> = activityInjector 
+        
 
     override fun onCreate() {
         super.onCreate()
