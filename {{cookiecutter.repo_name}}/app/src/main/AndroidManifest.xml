@@ -34,13 +34,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+             <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
         </activity>
         {% endif %}
-
-        <!--TODO:put your fabric api key here-->
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value=""  />
 
     </application>
 
