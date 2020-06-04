@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import dagger.android.AndroidInjection
 import {{ cookiecutter.package_name }}.BR
 import javax.inject.Inject
@@ -23,7 +22,7 @@ abstract class BaseActivity<B : ViewDataBinding, V : BaseViewModel>(
     }
 
     private val viewModel by lazy {
-        ViewModelProviders.of(this, viewModelProviderFactory).get(viewModelClass)
+        ViewModelProvider(this, viewModelProviderFactory).get(viewModelClass)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
